@@ -1,0 +1,38 @@
+int lightSensor = 0;// LIGHT SENSOR GOING IN ANALOG 2
+int lightSensor5 = 0; // LIGHT SENSOR GOING IN ANALOG 5 
+int potSensor1 = 0; // Potentiometer GOING IN ANALOG 1 
+int potSensor3 = 0; // Potentiometer GOING IN ANALOG 3 
+int buttonkey2 = 0; // button key going in digital 2
+int buttonkey3 = 0; // button key going in digital 3 
+int fsrValue = 0; // Small FSR
+int count; // variable to store loop counter
+
+void setup(){
+Serial.begin(9600);
+}
+void loop() {
+fsrValue = analogRead(0); // analog read into sensor value variable
+potSensor1 = analogRead(1);
+potSensor3 = analogRead(3);
+lightSensor = analogRead(2);
+lightSensor5 = analogRead(5);
+buttonkey2 = digitalRead(2);
+buttonkey3 = digitalRead(3);
+count = count + 1; // increment counter
+Serial.print(fsrValue); // print sensorValue to serial
+Serial.write(32); // write the value 32 (ASCII for space character) to serial
+Serial.print(potSensor1);
+Serial.write(32);
+Serial.print(potSensor3);
+Serial.write(32);
+Serial.print(lightSensor);
+Serial.write(32);
+Serial.print(lightSensor5);
+Serial.write(32);
+Serial.print(buttonkey2);
+Serial.write(32);
+Serial.print(buttonkey3);
+Serial.write(32);
+Serial.println(count); //Print counter state to serial and immediately send ASCII 13 and 10 to mc
+delay (100);
+}
